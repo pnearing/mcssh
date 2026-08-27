@@ -171,9 +171,9 @@ def resolve_hosts(
       - a raw SSH host such as root@example.com, unless cluster_only=True
 
     Examples:
-      mcssh.py sitetra
-      mcssh.py sitetra root@example.com
-      mcssh.py --cluster-only sitetra
+      mcssh.py mycluster
+      mcssh.py mycluster root@example.com
+      mcssh.py --cluster-only mycluster
     """
     clusters = _load_clusters(cluster_file)
 
