@@ -57,7 +57,7 @@ def main() -> int:
     parser.add_argument(
         "targets",
         nargs="+",
-        help="Cluster name(s) or SSH host(s), e.g. sitetra root@example.com",
+        help="Cluster name(s) or SSH host(s), e.g. mycluster root@example.com",
     )
 
     parser.add_argument(
@@ -92,19 +92,19 @@ def main() -> int:
         action="store_true",
         help="Do not prompt before --kill-existing replaces a session.",
     )
-    
+
     parser.add_argument(
         "--cluster-only",
         action="store_true",
         help="Require every target to be a cluster name. Unknown targets will error.",
     )
-    
+
     parser.add_argument(
         "--no-titles",
         action="store_true",
         help="Disable tmux pane titles.",
     )
-    
+
     args = parser.parse_args()
 
     try:
