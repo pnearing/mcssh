@@ -1,3 +1,4 @@
+import importlib
 import tempfile
 import unittest
 import sys
@@ -7,6 +8,8 @@ from unittest.mock import patch
 from clusters.clusters import MAX_RESOLVED_HOSTS, HostTarget, resolve_hosts, validate_hosts
 from tmux.tmux import send_ssh_command, set_pane_title
 import mcssh
+
+tmux_module = importlib.import_module("tmux.tmux")
 
 
 class ClusterTests(unittest.TestCase):
@@ -71,7 +74,7 @@ class ClusterTests(unittest.TestCase):
 
 
 class TmuxTests(unittest.TestCase):
-    @patch("tmux.tmux.tmux")
+    @patch.object(tmux_module, "tmux")
     def test_ssh_command_is_escaped_and_targeted(self, tmux):
         send_ssh_command("mcssh", "user@host; touch /tmp/pwned", "2222", "/tmp/key file")
 
@@ -83,7 +86,7 @@ class TmuxTests(unittest.TestCase):
             "C-m",
         )
 
-    @patch("tmux.tmux.tmux")
+    @patch.object(tmux_module, "tmux")
     def test_pane_title_strips_terminal_controls_and_is_bounded(self, tmux):
         set_pane_title("mcssh", "host\x1b[31m\n" + "a" * 300)
 
