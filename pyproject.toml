@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcssh"
+version = "0.1.0"
+description = "Open multiple SSH sessions in synchronized tmux panes"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-only"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Systems Administration",
+]
+
+[project.scripts]
+mcssh = "mcssh:main"
+
+[tool.setuptools]
+py-modules = ["mcssh"]
+
+[tool.setuptools.packages.find]
+include = ["clusters*", "tmux*"]
